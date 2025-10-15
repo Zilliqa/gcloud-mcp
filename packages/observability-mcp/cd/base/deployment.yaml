@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: observability-mcp
+  namespace: observability-mcp
+  labels:
+    app.kubernetes.io/name: observability-mcp
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: observability-mcp
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: observability-mcp
+    spec:
+      containers:
+        - name: observability-mcp
+          image: observability-mcp
+          ports:
+            - containerPort: 3000
+              name: http
+              protocol: TCP
+          envFrom:
+            - configMapRef:
+                name: observability-mcp
+          resources:
+            requests:
+              memory: "128Mi"
+            limits:
+              memory: "512Mi"
