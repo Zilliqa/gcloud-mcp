@@ -30,19 +30,18 @@ FROM base AS final
 RUN addgroup -S nodejs && adduser -S nodejs -G nodejs
 USER nodejs
 
-# Copy only the necessary production dependencies and built files.
-# We focus on the specific package we want to run.
-WORKDIR /app/packages/observability-mcp
+# Set the final working directory.
+WORKDIR /app
 
-# Copy the package.json for this specific service.
-COPY --from=builder /app/packages/observability-mcp/package.json .
+# We also copy the entire built monorepo's node_modules to handle workspace dependencies.
+COPY --chown=nodejs:nodejs --from=builder /app/node_modules ./node_modules
 
 # Copy the built bundle from the builder stage.
-COPY --from=builder /app/packages/observability-mcp/dist ./dist
+COPY --chown=nodejs:nodejs --from=builder /app/packages/observability-mcp/dist ./dist
 
 # Expose the port your application listens on.
-# Replace 8080 with the actual port used by observability-mcp.
-EXPOSE 8080
+# Replace 3000 with the actual port used by observability-mcp.
+EXPOSE 3000
 
 # Command to run the application.
 # This runs the bundled javascript file with the --http flag.
