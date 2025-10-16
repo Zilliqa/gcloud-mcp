@@ -5,8 +5,8 @@ global:
   tf_state_prefix: "terraform/observability-mcp"
 
 registries:
-  staging: asia-docker.pkg.dev/prj-p-devops-services-tvwmrf63/zilliqa-private
-  production: asia-docker.pkg.dev/prj-p-devops-services-tvwmrf63/zilliqa-private
+  staging: asia-docker.pkg.dev/prj-d-devops-services-4dgwlsse/zilliqa-private
+  public: asia-docker.pkg.dev/prj-d-devops-services-4dgwlsse/zilliqa-public
 
 clusters:
   staging:
