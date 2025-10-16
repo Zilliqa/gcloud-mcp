@@ -19,6 +19,7 @@ clusters:
     apps:
       observability-mcp:
         repo: https://github.com/Zilliqa/gcloud-mcp
+        registry: public
         path: packages/observability-mcp/cd/overlays/staging
         track: staging
         type: kustomize
