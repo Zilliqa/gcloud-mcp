@@ -4,5 +4,6 @@ resources:
   - namespace.yaml
   - configmap.yaml
   - deployment.yaml
-  - service.yaml
   - healthcheckpolicy.yaml
+  - service.yaml
+  - serviceaccount.yaml
