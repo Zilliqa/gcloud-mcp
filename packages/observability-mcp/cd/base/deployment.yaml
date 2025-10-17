@@ -6,7 +6,6 @@ metadata:
   labels:
     app.kubernetes.io/name: observability-mcp
 spec:
-  serviceAccountName: observability-mcp
   replicas: 1
   selector:
     matchLabels:
@@ -16,6 +15,7 @@ spec:
       labels:
         app.kubernetes.io/name: observability-mcp
     spec:
+      serviceAccountName: observability-mcp
       containers:
         - name: observability-mcp
           image: observability-mcp
