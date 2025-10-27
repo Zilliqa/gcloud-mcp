@@ -81,6 +81,66 @@ The server exposes the following tools:
 |                     | `get_trace`               | Gets a specific trace in a project.        |
 | **Error Reporting** | `list_group_stats`        | Lists the error groups for a project.      |
 
+## Development
+
+Follow these instructions to get the server running on your local machine for development and testing purposes.
+
+### 1. Installation
+
+First, install the project dependencies using npm:
+
+```bash
+npm install
+```
+
+### 2. Build
+
+Next, compile the TypeScript source code into JavaScript:
+
+```bash
+npm run build
+```
+
+This will create a `build` directory containing the distributable files.
+
+### 3. Running the Server
+
+The server can operate in two modes:
+- **`stdio` mode**: The server communicates over standard input/output. This is typically used for direct interaction with the MCP server on the same machine. This is the default option.
+- **`http` mode**: The server exposes an HTTP API, allowing for remote communication and management from other services.
+
+```bash
+node node packages/observability-mcp/dist/bundle.js
+```
+
+To run the server in HTTP streamable mode add the `--http` flag:
+
+```bash
+node node packages/observability-mcp/dist/bundle.js --http
+```
+
+### 4. Configuring the LLM settings
+
+Add this configuration in the LLM local settings to test the MCP server. This is an example for Gemini:
+
+```json
+"mcpServers": {
+  "observability-local": {
+    "httpUrl": "http://localhost:3000/mcp"
+  }
+}
+```
+
+## Deployment
+
+### Kubernetes
+
+The Kubernetes manifests for deploying this server are located in the `packages/observability-mcp/cd/` directory. Environment-specific configurations can be found in `packages/observability-mcp/cd/overlays/`.
+
+### Production environment
+
+A production version of this server is automatically deployed via GitHub Actions pipelines. The deployment is triggered on the creation of a new release and it is only accessible inside the Kubernetes cluster.
+
 ## 📄 Important Notes
 
 This repository is currently in preview and may see breaking changes. This
