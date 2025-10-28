@@ -52,7 +52,7 @@ jobs:
       fail-fast: false
       matrix:
         application:
-          - observability-mcp
+          - observability-mcp-server
     env:
       APP_NAME: ${{ matrix.application }}
       Z_ENV: infra/live/gcp/production/prj-p-prod-apps/z_ase1.yaml
