@@ -4,4 +4,14 @@ kind: Kustomization
 resources:
   - ../../base
 
+patches:
+  - target:
+      kind: ServiceAccount
+      name: observability-mcp
+    patch: |-
+      - op: replace
+        path: /metadata/annotations
+        value:
+          iam.gke.io/gcp-service-account: sa-observability-mcp@prj-p-prod-apps-3cidxzuc.iam.gserviceaccount.com
+
 namespace: observability-mcp-prd
