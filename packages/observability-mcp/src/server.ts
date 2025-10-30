@@ -34,7 +34,6 @@ import { Server } from 'http';
 // --- HTTP CONFIGURATION ---
 const PORT = process.env["PORT"] || "3000";
 const HOST = process.env["HOST"] || '0.0.0.0';
-const SERVER_TIMEOUT = process.env["SERVER_TIMEOUT"] || '0';
 // ------------------------------------
 
 
@@ -145,7 +144,6 @@ const startHttpServer = async (server: McpServer): Promise<Server> => {
         }
         console.error(`Endpoint: http://${HOST}:${PORT}/mcp`);
     });
-    httpServer.timeout = Number(SERVER_TIMEOUT);
     return httpServer as Server;
 }
 // -------------------------------------------------------------
